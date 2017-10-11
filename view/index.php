@@ -33,11 +33,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">BOOK ITxx</a>
+      <a class="navbar-brand" href="#">BOOK IT</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.html">HOME</a></li>
+        <li class="active"><a href="#">HOME</a></li>
           
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">CATEGORIES <span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -47,14 +47,32 @@
           <li><a href="#">EXTC</a></li>
         </ul>
       </li>
-          
-        <!--<li><a href="#">Deals</a></li>
-        <li><a href="#">Stores</a></li>
-        <li><a href="#">Contact</a></li>-->
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+
+      <?php
+      
+      session_start();
+
+      if(isset($_SESSION["logged"]) && $_SESSION["logged"]!=TRUE)
+      echo '<li><a href="register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>';
+
+      else{
+        echo '<li><div>Welcome'.$_SESSION["username"].'</div></li>';
+
+
+        echo '<form method="POST"><li><button class="btn btn-danger" name="destroy" type="submit" style="margin-top:10%">Log Out</button></li></form>';
+      }
+
+      if(isset($_POST["destroy"])){
+        $_SESSION["logged"] = FALSE;
+        header("location: index.php");
+        exit();
+      }
+
+      ?>
 
       </ul>
     </div>

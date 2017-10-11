@@ -10,11 +10,6 @@
       margin-bottom: 50px;
       border-radius: 0;
     }
-    
-    /* Remove the jumbotron's default bottom margin */ 
-     .jumbotron {
-      margin-bottom: 0;
-    }
    
     /* Add a gray background color and some padding to the footer */
     footer {
@@ -40,11 +35,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">SELL</a>
+      <a class="navbar-brand" href="index.php">BOOKIT</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.html">HOME</a></li>
+        <li class="active"><a href="index.php">HOME</a></li>
           
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">CATEGORIES <span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -54,14 +49,13 @@
           <li><a href="#">EXTC</a></li>
         </ul>
       </li>
-          
-        <!--<li><a href="#">Deals</a></li>
-        <li><a href="#">Stores</a></li>
-        <li><a href="#">Contact</a></li>-->
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+
+
+        <li><a href="register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
 
       </ul>
     </div>
@@ -72,13 +66,49 @@
     <div class="container" style="width:50%;border: 1px solid grey;padding:2%">
         <h3>Login</h3><br>
 
-        <form>
+        <form method="POST" action="login.php">
             <input type="text" name="username" placeholder="Username" required><br><br>
-            <input type="text" name="password" placeholder="Password" required><br><br>
-            <input class="btn btn-success" type="submit" name="login_btn" value ="login" required><br><br>
+            <input type="password" name="password" placeholder="Password" required><br><br>
+            <input class="btn btn-success" type="submit" name="login_btn" value="Login"><br><br>
         </form>
     </div>
 </center>
 
 </body>
 </html>
+
+
+<?php
+  
+  if(isset($_POST["login_btn"])){
+
+    $conn = new mysqli("localhost","root","","bookit");
+
+  if($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $sql = "SELECT username,password FROM user_data WHERE username='$username' AND password='$password'";
+
+    $result = $conn->query($sql);
+
+    if($result->num_rows > 0){
+      session_start();
+
+      $_SESSION["username"] = $username;
+      $_SESSION["logged"] = TRUE;
+
+       header("location:index.php");
+       exit();
+    }
+
+    else{
+      echo "<script>alert('Invalid username or password !')</script>";
+    }
+
+    $conn->close();
+  }
+?>
