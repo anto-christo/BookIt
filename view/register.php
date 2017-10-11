@@ -106,9 +106,6 @@
   if($con_pass == $password){
 
     if($res_uname->num_rows > 0){
-      // echo '<div class="alert alert-primary" role="alert">
-      //       Both the passwords don\'t match
-      //       </div>';
       echo "<script>alert('Username already exists')</script>";
     }
 
@@ -120,7 +117,14 @@
       else{
 
         if($conn->query($register)){
-          header("location: index.html");
+          session_start();
+
+          $_SESSION["username"] = $username;
+          $_SESSION["logged"] = TRUE;
+
+          header("location:index.php");
+          exit();
+      
         }
       }
     }

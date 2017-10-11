@@ -76,78 +76,34 @@
   </div>
 </nav>
 
-
 <div class="container">    
   <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading">POPULAR</div>
-        <div class="panel-body"><img src="../assets/images/bk1.jpg" class="img-responsive" style="width:50%" alt="Image"></div>
-        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
-        </a></p></div>
-      </div>
-    </div>
-    <div class="col-sm-4"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">POPULAR</div>
-        <div class="panel-body"><img src="../assets/images/bk2.jpg" class="img-responsive" style="width:50%" alt="Image"></div>
-        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
-        </a></p></div>
-      </div>
-    </div>
-    <div class="col-sm-4"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">POPULAR</div>
-        <div class="panel-body"><img src="../assets/images/bk6.jpg" class="img-responsive" style="width:50%" alt="Image"></div>
-        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
-        </a></p></div>
-      </div>
-    </div>
-  </div>
-</div><br>
+ 	<?php
 
-<div class="container">    
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading">NEW PRODUCT</div>
-        <div class="panel-body"><img src="../assets/images/bk4.jpg" class="img-responsive" style="width:50%" alt="Image"></div>
-        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
-        </a></p></div>
-      </div>
-    </div>
-    <div class="col-sm-4"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">NEW PRODUCT</div>
-        <div class="panel-body"><img src="../assets/images/bk5.jpg" class="img-responsive" style="width:58%" alt="Image"></div>
-        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
-        </a></p></div>
-      </div>
-    </div>
-    <div class="col-sm-4"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">NEW PRODUCT</div>
-        <div class="panel-body"><img src="../assets/images/bk3.jpg" class="img-responsive" style="width:53%" alt="Image"></div>
-        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
-        </a></p></div>
-      </div>
-    </div>
-  </div>
-</div><br><br>
+	$conn = new mysqli("localhost","root","","bookit");
 
-<footer class="container-fluid text-center">
-  <p>Online Store Copyright</p>  
-  <form class="form-inline">Get deals:
-    <input type="email" class="form-control" size="50" placeholder="Email Address">
-    <button type="button" class="btn btn-danger">Sign Up</button>
-  </form>
-</footer>
+	$ret = "SELECT * FROM book_data";
+
+	$result = $conn->query($ret);
+
+	if($result->num_rows>0){
+		while($row = $result->fetch_assoc()){
+			echo '
+				<div class="col-sm-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">NEW PRODUCT</div>
+        <div class="panel-body"><img src="uploads/'.$row["image"].'" class="img-responsive" style="width:50%" alt="Image"></div>
+        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
+        </a></p></div>
+      </div>
+    </div>
+			';
+		}
+	}
+?>
+  </div>
+</div>
 
 </body>
 </html>

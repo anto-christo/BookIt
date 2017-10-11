@@ -97,7 +97,9 @@
             </select><br><br>
 
             <div style="border:1px solid grey;width:50%">
-            Select Image:<input type="file" name="fileToUpload" id="fileToUpload"></div><br>
+            Select Image:<input type="file" name="fileToUpload" id="fileToUpload" value="Select image"></div><br>
+
+            <input type="number" name="cost" placeholder="Cost in Rupees"><br><br>
 
             <input class="btn btn-success" type="submit" name="upload_btn" value ="Sell"><br><br>
         </form>
@@ -115,35 +117,43 @@
   if($conn->connect_error)
     die("Connection failed".$conn->connect_error);
 
-  $booh_name = $_POST["book_name"];
+  $username = $_SESSION["username"];
+  $book_name = $_POST["book_name"];
   $author = $_POST["author"];
   $edition = $_POST["edition"];
   $department = $_POST["department"];
   $semester = $_POST["semester"];
+  $image = $_FILES["fileToUpload"]["name"];
+  $cost = $_POST["cost"];
+
+  $book_detail = "INSERT INTO book_data (username,book_name,author,edition,department,semester,image,cost) VALUES('$username','$book_name','$author','$edition','$department','$semester','$image','$cost')";
+
+  if(!$conn->query($book_detail)){
+    echo "<script>alert('Error sending to database')</script>";
+  }
 
   $target_dir = "uploads/";
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
   $uploadOk = 1;
   $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-  // Check if image file is a actual image or fake image
+  
       $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
       if($check !== false) {
-          echo "File is an image - " . $check["mime"] . ".";
           $uploadOk = 1;
       } else {
-          echo "File is not an image.";
+          echo "<script>alert(File is not an image)</script>";
          $uploadOk = 0;
       }
 
       if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
-} else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+
     } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
+      if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        header("location: index.php");
+      } else {
+          echo "<script>alert(Sorry, there was an error uploading your file)</script>";
+     }
 
     }
   }
