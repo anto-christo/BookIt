@@ -76,68 +76,41 @@
   </div>
 </nav>
 
-
 <div class="container">    
   <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading">POPULAR</div>
-        <div class="panel-body"><img src="../assets/images/bk1.jpg" class="img-responsive" style="width:50%" alt="Image"></div>
-        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
-        </a></p></div>
-      </div>
-    </div>
-    <div class="col-sm-4"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">POPULAR</div>
-        <div class="panel-body"><img src="../assets/images/bk2.jpg" class="img-responsive" style="width:50%" alt="Image"></div>
-        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
-        </a></p></div>
-      </div>
-    </div>
-    <div class="col-sm-4"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">POPULAR</div>
-        <div class="panel-body"><img src="../assets/images/bk6.jpg" class="img-responsive" style="width:50%" alt="Image"></div>
-        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
-        </a></p></div>
-      </div>
-    </div>
-  </div>
-</div><br>
 
-<div class="container">    
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading">NEW PRODUCT</div>
-        <div class="panel-body"><img src="../assets/images/bk4.jpg" class="img-responsive" style="width:50%" alt="Image"></div>
-        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
-        </a></p></div>
-      </div>
-    </div>
-    <div class="col-sm-4"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">NEW PRODUCT</div>
-        <div class="panel-body"><img src="../assets/images/bk5.jpg" class="img-responsive" style="width:58%" alt="Image"></div>
-        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
-        </a></p></div>
-      </div>
-    </div>
-    <div class="col-sm-4"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">NEW PRODUCT</div>
-        <div class="panel-body"><img src="../assets/images/bk3.jpg" class="img-responsive" style="width:53%" alt="Image"></div>
-        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
-        </a></p></div>
-      </div>
-    </div>
+  <?php
+    $conn = new mysqli("localhost","root","","bookit");
+
+    if($conn->connect_error)
+      die("Connection failed ".$conn->connect_error);
+
+    $ret = "SELECT * FROM book_data";
+
+    //&#x20B9
+
+    $result = $conn->query($ret);
+
+    if($result->num_rows > 0){
+      echo '<form method="POST" action="buy.php">';
+      while($row = $result->fetch_assoc()){
+        echo '
+          <div class="col-sm-4">
+            <div class="panel panel-primary">
+              <div class="panel-heading">LATEST ARRIVAL</div>
+              <center>
+                <div class="panel-body"><img src="uploads/'.$row["image"].'" class="img-responsive" style="width:50%" alt="Image"></div></center>
+              <div class="panel-footer">
+              <p>&#x20B9;'.$row["cost"].'</p><br>
+              <button class="btn btn-primary" type="submit" name="more_info" value="'.$row["sell_id"].'">View More</button>
+              </div>
+            </div>
+          </div>
+        ';
+      }
+      echo '</form>';
+    }
+  ?>   
   </div>
 </div><br><br>
 

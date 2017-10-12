@@ -68,7 +68,6 @@
         header("location: index.php");
         exit();
       }
-
       ?>
 
       </ul>
@@ -76,34 +75,73 @@
   </div>
 </nav>
 
-<div class="container">    
-  <div class="row">
- 	<?php
+<?php
+  if(isset($_POST["more_info"])){
 
-	$conn = new mysqli("localhost","root","","bookit");
+    $sell_id = $_POST["more_info"];
 
-	$ret = "SELECT * FROM book_data";
+    $conn = new mysqli("localhost","root","","bookit");
 
-	$result = $conn->query($ret);
+    if($conn->connect_error)
+      die("Connection failed ".$conn->connect_error);
 
-	if($result->num_rows>0){
-		while($row = $result->fetch_assoc()){
-			echo '
-				<div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading">NEW PRODUCT</div>
-        <div class="panel-body"><img src="uploads/'.$row["image"].'" class="img-responsive" style="width:50%" alt="Image"></div>
-        <div class="panel-footer">&#x20B9  <p><a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-shopping-cart"></span> BUY NOW
-        </a></p></div>
-      </div>
-    </div>
-			';
-		}
-	}
-?>
+    $ret = "SELECT * FROM book_data WHERE sell_id='$sell_id'";
+
+    $result = $conn->query($ret);
+
+    while($row = $result->fetch_assoc()){
+      echo '
+        <div class="container-fluid">
+  <div class="col-md-3">
+     <center>
+     <img src="uploads/'.$row["image"].'" style="width: 70%;"><br><br>
+     </center>
+  </div>
+
+  <div class="col-md-9">
+    <table class="table">
+      <tr>
+        <td><strong>Book Name</strong></td>
+        <td>'.$row["book_name"].'</td>
+      </tr>
+
+      <tr>
+        <td><strong>Author</strong></td>
+        <td>'.$row["author"].'</td>
+      </tr>
+
+      <tr>
+        <td><strong>Edition</strong></td>
+        <td>'.$row["edition"].'</td>
+      </tr>
+
+      <tr>
+        <td><strong>Department</strong></td>
+        <td>'.$row["department"].'</td>
+      </tr>
+
+      <tr>
+        <td><strong>Semester</strong></td>
+        <td>'.$row["semester"].'</td>
+      </tr>
+
+      <tr>
+        <td style="color: red"><h4><strong>Cost</strong></h4></td>
+        <td style="color: red"><h4><strong>'.$row["cost"].'</strong></h4></td>
+      </tr>
+
+
+    </table><br><br>
+
+    <center>
+    <button class="btn btn-info" style="width: 100%">Buy Now</button><br><br>
+    <button class="btn btn-warning" style="width: 100%">Contact Buyer</button></center><br><br>
   </div>
 </div>
+      ';
+    }
+  }
+?>
 
 </body>
 </html>
