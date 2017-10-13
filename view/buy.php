@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,11 +37,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">BOOK IT</a>
+      <a class="navbar-brand" href="index.php">BOOK IT</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">HOME</a></li>
+        <li class="active"><a href="index.php">HOME</a></li>
           
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">CATEGORIES <span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -52,9 +56,6 @@
       <ul class="nav navbar-nav navbar-right">
 
       <?php
-      
-      session_start();
-
       if(isset($_SESSION["logged"]) && $_SESSION["logged"]!=TRUE)
       echo '<li><a href="register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>';
@@ -94,7 +95,7 @@
         <div class="container-fluid">
   <div class="col-md-3">
      <center>
-     <img src="uploads/'.$row["image"].'" style="width: 70%;"><br><br>
+     <img src="uploads/'.$row["image"].'" style="width: 75%;"><br><br>
      </center>
   </div>
 
@@ -127,14 +128,14 @@
 
       <tr>
         <td style="color: red"><h4><strong>Cost</strong></h4></td>
-        <td style="color: red"><h4><strong>'.$row["cost"].'</strong></h4></td>
+        <td style="color: red"><h4><strong>&#x20B9;'.$row["cost"].'</strong></h4></td>
       </tr>
 
 
     </table><br><br>
 
     <center>
-    <button class="btn btn-info" style="width: 100%">Buy Now</button><br><br>
+    <button class="btn btn-primary" style="width: 100%">Buy Now</button><br><br>
     <button class="btn btn-warning" style="width: 100%">Contact Buyer</button></center><br><br>
   </div>
 </div>

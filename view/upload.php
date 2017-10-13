@@ -74,8 +74,44 @@
         <h3>Sell</h3><br>
 
         <form method="POST" action="upload.php" enctype="multipart/form-data">
-            <input type="text" name="book_name" placeholder="Book Name" required><br><br>
-            <input type="text" name="author" placeholder="Author" required><br><br>
+            <?php
+
+            $conn = new mysqli("localhost","root","","bookit");
+
+            if($conn->connect_error)
+              die("Connection failed ".$conn->connect_error);
+
+            $ret = "SELECT * FROM book";
+            $result = $conn->query($ret);
+
+            if($result->num_rows>0){
+              echo '<input id="book_name" list="suggestions" name="book_name" placeholder="Book Name" required>
+                  <datalist id="suggestions">';
+
+              while($row = $result->fetch_assoc()){
+                echo '
+                <option value="'.$row["book_name"].'">
+                ';
+              }
+
+              echo '</datalist><br><br>';
+            }
+
+            if($result->num_rows>0){
+              echo '<input id="author" list="auth_suggestions" name="author" placeholder="Author" required>
+                  <datalist id="auth_suggestions">';
+
+              while($row = $result->fetch_assoc()){
+                echo '
+                <option value="'.$row["author"].'">
+                ';
+              }
+
+              echo '</datalist><br><br>';
+            }
+
+            ?>
+
             <input type="text" name="edition" placeholder="Edition" required><br><br>
             
             <select name="department">
@@ -128,8 +164,20 @@
 
   $book_detail = "INSERT INTO book_data (username,book_name,author,edition,department,semester,image,cost) VALUES('$username','$book_name','$author','$edition','$department','$semester','$image','$cost')";
 
+  $book_info = "INSERT INTO book(book_name,author) VALUES('$book_name','$author')";
+
+  $ret = "SELECT book_name FROM book WHERE book_name='$book_name'";
+
   if(!$conn->query($book_detail)){
     echo "<script>alert('Error sending to database')</script>";
+  }
+
+  $name_result = $conn->query($ret);
+
+  if($name_result->num_rows==0){
+    if(!$conn->query($book_info)){
+      echo "<script>alert('Error sending to database')</script>";
+    }
   }
 
   $target_dir = "uploads/";

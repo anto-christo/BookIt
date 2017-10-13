@@ -101,7 +101,8 @@
               <center>
                 <div class="panel-body"><img src="uploads/'.$row["image"].'" class="img-responsive" style="width:50%" alt="Image"></div></center>
               <div class="panel-footer">
-              <p>&#x20B9;'.$row["cost"].'</p><br>
+              <strong><p>'.$row["book_name"].'</p>
+              <p>&#x20B9;'.$row["cost"].'</p></strong>
               <button class="btn btn-primary" type="submit" name="more_info" value="'.$row["sell_id"].'">View More</button>
               </div>
             </div>
