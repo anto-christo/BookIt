@@ -318,9 +318,9 @@
 
       <form class="navbar-form navbar-left" method="POST" action="search.php">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search">
+        <input type="text" class="form-control" placeholder="Search" name="keyword">
         <div class="input-group-btn">
-          <button class="btn btn-default" type="submit">
+          <button class="btn btn-default" type="submit" name="search">
             <i class="glyphicon glyphicon-search"></i>
           </button>
         </div>
@@ -353,22 +353,18 @@
   </div>
 </nav>
 
-<div class="container">    
-  <div class="row">
+<?php
+    if(isset($_POST["search"])){
 
-  <?php
-    $conn = new mysqli("localhost","root","","bookit");
+        $conn = new mysqli("localhost","root","","bookit");
 
-    if($conn->connect_error)
-      die("Connection failed ".$conn->connect_error);
+        $keyword = $_POST["keyword"];
 
-    $ret = "SELECT * FROM book_data";
+        $sql = "SELECT * FROM book_data WHERE book_name LIKE '%$keyword%'";
 
-    //&#x20B9
+        $result = $conn->query($sql);
 
-    $result = $conn->query($ret);
-
-    if($result->num_rows > 0){
+        if($result->num_rows > 0){
       echo '<form method="POST" action="buy.php">';
       while($row = $result->fetch_assoc()){
         echo '
@@ -388,17 +384,18 @@
       }
       echo '</form>';
     }
-  ?>   
-  </div>
-</div><br><br>
 
-<footer class="container-fluid text-center">
-  <p>Online Store Copyright</p>  
-  <form class="form-inline">Get deals:
-    <input type="email" class="form-control" size="50" placeholder="Email Address">
-    <button type="button" class="btn btn-danger">Sign Up</button>
-  </form>
-</footer>
+        else{
+            echo '
+                <center>
+                <div class="container" style="background-color:black;width:50%;margin-top:15%;height:100px;padding-top:3%">
+                    <p style="color:white"><strong>No matching books found !!</strong></p>
+                </div>  
+                </center>
+            ';
+        }
+    }
+?>
 
 </body>
 </html>

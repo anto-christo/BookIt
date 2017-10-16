@@ -140,6 +140,27 @@
   </div>
 </div>
       ';
+
+      $book_name = $row["book_name"];
+    }
+
+    $rev = "SELECT * FROM review WHERE book_name='$book_name'";
+
+    $res = $conn->query($rev);
+
+    if($res->num_rows > 0){
+      echo '<div class="container">';
+
+      while($data = $res->fetch_assoc()){
+        echo '
+            <div class="row">
+              <p>User:'.$data["username"].'</p>
+              <p>Review:'.$data["review"].'</p>
+            </div>
+        ';
+      }
+
+      echo '</div>';
     }
   }
 ?>
