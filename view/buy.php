@@ -80,6 +80,7 @@
   if(isset($_POST["more_info"])){
 
     $sell_id = $_POST["more_info"];
+    $_SESSION["sell_id"] = $sell_id;
 
     $conn = new mysqli("localhost","root","","bookit");
 
@@ -95,7 +96,7 @@
         <div class="container-fluid">
   <div class="col-md-3">
      <center>
-     <img src="uploads/'.$row["image"].'" style="width: 75%;"><br><br>
+     <img src="uploads/'.$row["image"].'" style="width:200px;height:200px"><br><br>
      </center>
   </div>
 
@@ -136,7 +137,7 @@
 
     <center>
     <button class="btn btn-primary" style="width: 100%">Buy Now</button><br><br>
-    <button class="btn btn-warning" style="width: 100%">Contact Buyer</button></center><br><br>
+    <a href="message.php"><button class="btn btn-warning" style="width: 100%">Contact Seller</button></a></center><br><br>
   </div>
 </div>
       ';

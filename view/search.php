@@ -106,7 +106,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html">HOME</a></li>
+          <li class="active"><a href="index.php">HOME</a></li>
           
         
           <li>
@@ -121,8 +121,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">FIRST YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 1</a>
-                                            <a href="#">SEM 2</a>    
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="comp1" value="SEM 1" style="border: 0px;background-color: white">
+                                            <input type="submit" name="comp2" value="SEM 2" style="border: 0px;background-color: white">
+                                        </form>  
                                         </li>
                                     </ul>
                                 </li>
@@ -130,10 +132,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">SECOND YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 3</a>
-                                            <a href="#">SEM 4</a>
-                                            
-                                            
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="comp3" value="SEM 3" style="border: 0px;background-color: white">
+                                            <input type="submit" name="comp4" value="SEM 4" style="border: 0px;background-color: white">
+                                        </form>  
                                         </li>
                                     </ul>
                                 </li>
@@ -141,10 +143,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">THIRD YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 5</a>
-                                            <a href="#">SEM 6</a>
-                                            
-                                            
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="comp5" value="SEM 5" style="border: 0px;background-color: white">
+                                            <input type="submit" name="comp6" value="SEM 6" style="border: 0px;background-color: white">
+                                        </form>  
                                         </li>
                                     </ul>
                                 </li>
@@ -152,10 +154,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">FOURTH YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 7</a>
-                                            <a href="#">SEM 8</a>
-                                            
-                                            
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="comp7" value="SEM 7" style="border: 0px;background-color: white">
+                                            <input type="submit" name="comp8" value="SEM 8" style="border: 0px;background-color: white">
+                                        </form>  
                                         </li>
                                     </ul>
                                 </li>
@@ -169,10 +171,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">FIRST YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 1</a>
-                                            <a href="#">SEM 2</a>
-                                            
-                                            
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="it1" value="SEM 1" style="border: 0px;background-color: white">
+                                            <input type="submit" name="it2" value="SEM 2" style="border: 0px;background-color: white">
+                                        </form>  
                                         </li>
                                     </ul>
                                 </li>
@@ -180,10 +182,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">SECOND YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 3</a>
-                                            <a href="#">SEM 4</a>
-                                            
-                                            
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="it3" value="SEM 3" style="border: 0px;background-color: white">
+                                            <input type="submit" name="it4" value="SEM 4" style="border: 0px;background-color: white">
+                                        </form>  
                                         </li>
                                     </ul>
                                 </li>
@@ -191,27 +193,26 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">THIRD YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 5</a>
-                                            <a href="#">SEM 6</a>
-                                            
-                                            
-                                        </li>
-                                    </ul>
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="it5" value="SEM 5" style="border: 0px;background-color: white">
+                                            <input type="submit" name="it6" value="SEM 6" style="border: 0px;background-color: white">
+                                        </form>  
+                                        </li>                                    </ul>
                                 </li>
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">FOURTH YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 7</a>
-                                            <a href="#">SEM 8</a>
-                                            
-                                            
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="it7" value="SEM 7" style="border: 0px;background-color: white">
+                                            <input type="submit" name="it8" value="SEM 8" style="border: 0px;background-color: white">
+                                        </form>  
                                         </li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown-submenu">
+                         <li class="dropdown-submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">EXTC</a>
                             <ul class="dropdown-menu">
                                 
@@ -219,10 +220,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">FIRST YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 1</a>
-                                            <a href="#">SEM 2</a>
-                                            
-                                            
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="extc1" value="SEM 1" style="border: 0px;background-color: white">
+                                            <input type="submit" name="extc2" value="SEM 2" style="border: 0px;background-color: white">
+                                        </form>  
                                         </li>
                                     </ul>
                                 </li>
@@ -230,10 +231,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">SECOND YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 3</a>
-                                            <a href="#">SEM 4</a>
-                                            
-                                            
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="extc3" value="SEM 3" style="border: 0px;background-color: white">
+                                            <input type="submit" name="extc4" value="SEM 4" style="border: 0px;background-color: white">
+                                        </form>  
                                         </li>
                                     </ul>
                                 </li>
@@ -241,27 +242,26 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">THIRD YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 5</a>
-                                            <a href="#">SEM 6</a>
-                                            
-                                            
-                                        </li>
-                                    </ul>
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name=extct5" value="SEM 5" style="border: 0px;background-color: white">
+                                            <input type="submit" name=extct6" value="SEM 6" style="border: 0px;background-color: white">
+                                        </form>  
+                                        </li>                                    </ul>
                                 </li>
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">FOURTH YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 7</a>
-                                            <a href="#">SEM 8</a>
-                                            
-                                            
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name=extct7" value="SEM 7" style="border: 0px;background-color: white">
+                                            <input type="submit" name=extct8" value="SEM 8" style="border: 0px;background-color: white">
+                                        </form>  
                                         </li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown-submenu">
+                         <li class="dropdown-submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">MECHANICAL</a>
                             <ul class="dropdown-menu">
                                 
@@ -269,10 +269,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">FIRST YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 1</a>
-                                            <a href="#">SEM 2</a>
-                                            
-                                            
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="mech1" value="SEM 1" style="border: 0px;background-color: white">
+                                            <input type="submit" name="mech2" value="SEM 2" style="border: 0px;background-color: white">
+                                        </form>  
                                         </li>
                                     </ul>
                                 </li>
@@ -280,10 +280,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">SECOND YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 3</a>
-                                            <a href="#">SEM 4</a>
-                                            
-                                            
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="mech3" value="SEM 3" style="border: 0px;background-color: white">
+                                            <input type="submit" name="mech4" value="SEM 4" style="border: 0px;background-color: white">
+                                        </form>  
                                         </li>
                                     </ul>
                                 </li>
@@ -291,25 +291,36 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">THIRD YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 5</a>
-                                            <a href="#">SEM 6</a>
-                                            
-                                            
-                                        </li>
-                                    </ul>
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="mech5" value="SEM 5" style="border: 0px;background-color: white">
+                                            <input type="submit" name="mech6" value="SEM 6" style="border: 0px;background-color: white">
+                                        </form>  
+                                        </li>                                    </ul>
                                 </li>
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">FOURTH YEAR</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="#">SEM 7</a>
-                                            <a href="#">SEM 8</a>
-                                            
-                                            
+                                        <form method="POST" action="category.php">
+                                            <input type="submit" name="mech7" value="SEM 7" style="border: 0px;background-color: white">
+                                            <input type="submit" name="mech8" value="SEM 8" style="border: 0px;background-color: white">
+                                        </form>  
                                         </li>
                                     </ul>
                                 </li>
                             </ul>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">DASHBOARD<b class="caret"></b></a>
+                    <ul class="dropdown-menu multi-level">
+                       
+                        <li class="dropdown-submenu">
+                            <a href="#">BUYER</a>
+                            <a href="#">SELLER</a>
                         </li>
 
                     </ul>
@@ -372,7 +383,7 @@
             <div class="panel panel-primary">
               <div class="panel-heading">LATEST ARRIVAL</div>
               <center>
-                <div class="panel-body" style="width:50%;height:250px"><img src="uploads/'.$row["image"].'" style="width:200px;height:200px" class="img-responsive" alt="Image"></div></center>
+                <div class="panel-body" style="width:50%;height:225px"><img src="uploads/'.$row["image"].'" style="width:200px;height:200px" class="img-responsive" alt="Image"></div></center>
               <div class="panel-footer">
               <strong><p>'.$row["book_name"].'</p>
               <p>&#x20B9;'.$row["cost"].'</p></strong>
@@ -388,8 +399,8 @@
         else{
             echo '
                 <center>
-                <div class="container" style="background-color:black;width:50%;margin-top:15%;height:100px;padding-top:3%">
-                    <p style="color:white"><strong>No matching books found !!</strong></p>
+                <div class="container" style="border:1px solid grey;width:50%;margin-top:15%;height:100px;padding-top:3%">
+                    <p><strong>No matching books found !!</strong></p>
                 </div>  
                 </center>
             ';
