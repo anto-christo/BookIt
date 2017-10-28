@@ -1,0 +1,21 @@
+input,textarea,select{
+        width:50%;
+        padding: 12px 20px;
+        box-sizing: border-box;
+    }
+
+    footer {
+      background-color: black;
+      padding: 10px;
+      clear: both;
+      color: white;
+
+    }
+
+    .feedback {
+  background-color : black;
+  padding: 25px 20px;
+  border-radius: 250px;
+  border:none;
+          /*border-color: #46b8da;*/
+}

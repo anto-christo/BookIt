@@ -1,5 +1,8 @@
 <?php
   session_start();
+
+  if(isset($_SESSION["logged"]) && $_SESSION["logged"]!=TRUE)
+    header("location:login.php");
 ?>
 
 <!DOCTYPE html>
@@ -18,11 +21,19 @@
       margin-bottom: 50px;
       border-radius: 0;
     }
+
+    input,textarea,select{
+        width:50%;
+        padding: 12px 20px;
+        box-sizing: border-box;
+    }
    
     /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
+footer {
+      background-color: black;
+      padding: 10px;
+      clear: both;
+      color: white;
     }
 
     .navbar-nav > li:hover > .dropdown-menu {
@@ -76,8 +87,7 @@
     border-radius: 6px 0 6px 6px;
 }  
       .feedback {
-  background-color : #BDBDBD;
-  color: white;
+  background-color : black;
   padding: 25px 20px;
   border-radius: 250px;
   border:none;
@@ -90,12 +100,6 @@
     
   right: 10px;
 }
-
-textarea{
-        width:50%;
-        padding: 12px 20px;
-        box-sizing: border-box;
-    }
   </style>
 </head>
 <body>
@@ -108,7 +112,7 @@ textarea{
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">BOOK IT</a>
+      <a class="navbar-brand" href="index.php">BOOK IT</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -325,24 +329,16 @@ textarea{
                     <ul class="dropdown-menu multi-level">
                        
                         <li class="dropdown-submenu">
-                            <a href="#">BUYER</a>
-                            <a href="#">SELLER</a>
+                            <a href="buyer.php">BUYER</a>
+                            <a href="seller.php">SELLER</a>
+                            <a href="request.php">BUY REQUEST</a>
                         </li>
 
                     </ul>
                 </li>
-      </ul>
 
-      <form class="navbar-form navbar-left" method="POST" action="search.php">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search" name="keyword">
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit" name="search">
-            <i class="glyphicon glyphicon-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+                <li><a href="review.php">REVIEW</a></li>
+      </ul>
 
       <ul class="nav navbar-nav navbar-right">
 
@@ -393,9 +389,11 @@ textarea{
               <center>
                 <div class="panel-body" style="width:50%;height:225px"><img src="uploads/'.$row["image"].'" style="width:200px;height:200px" class="img-responsive" alt="Image"></div></center>
               <div class="panel-footer">
-              	<center>
-              		<p>'.$row["question"].'</p><br>
+              	
+                    <p><strong>SUBJECT:</strong>'.$row["subject"].'</p>
+              		<p><><strong>QUESTION:</strong>'.$row["question"].'</p><br
 
+                    <center>
               		<input name="ans" height="200px" placeholder="Type your answer here..."><br><br>
 
                     <button class="btn btn-primary" type="submit" name="answer" value="'.$row["id"].'">Reply</button>
@@ -410,19 +408,43 @@ textarea{
         echo '</form>';
   	}
 
+    else{
+            echo '
+                <center>
+                <div class="container" style="border:1px solid grey;width:50%;margin-top:15%;height:100px;padding-top:3%">
+                    <p><strong>No questions !!</strong></p>
+                </div>  
+                </center>
+            ';
+        }
+
+
     if(isset($_POST["answer"])){
         $id = $_POST["answer"];
         $answer = $_POST["ans"];
 
         $insert = "UPDATE contact SET answer='$answer' WHERE id='$id'";
 
-        if($conn->query($insert))
-            echo '<script>alert("Reply sent successfully!");</script>';
+        if($conn->query($insert)){
+            echo '<script>window.location.replace("seller.php")</script>';
+        }
 
         else
             echo '<script>alert("Reply not send!");</script>';
     }
 ?>
+
+<br><br><br><br>
+
+<footer class="footer fixed-bottom">
+      <div class="container text-center" style="height: 100px;">
+      <div class = "row">
+      <div class="col-sm-12"><h5>CONTACT US</h5>Tel. No. : 8898312549 / 7506004002 / 9875242221
+<br>Email : bookit@gmail.com</div>
+</div>
+      </div>
+      <!-- /.container -->
+</footer>
 
 </body>
 </html>

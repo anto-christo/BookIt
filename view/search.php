@@ -18,11 +18,19 @@
       margin-bottom: 50px;
       border-radius: 0;
     }
+
+    input,textarea,select{
+        width:50%;
+        padding: 12px 20px;
+        box-sizing: border-box;
+    }
    
     /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
+footer {
+      background-color: black;
+      padding: 10px;
+      clear: both;
+      color: white;
     }
 
     .navbar-nav > li:hover > .dropdown-menu {
@@ -76,8 +84,7 @@
     border-radius: 6px 0 6px 6px;
 }  
       .feedback {
-  background-color : #BDBDBD;
-  color: white;
+  background-color : black;
   padding: 25px 20px;
   border-radius: 250px;
   border:none;
@@ -102,7 +109,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">BOOK IT</a>
+      <a class="navbar-brand" href="index.php">BOOK IT</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -319,24 +326,16 @@
                     <ul class="dropdown-menu multi-level">
                        
                         <li class="dropdown-submenu">
-                            <a href="#">BUYER</a>
-                            <a href="#">SELLER</a>
+                            <a href="buyer.php">BUYER</a>
+                            <a href="seller.php">SELLER</a>
+                            <a href="request.php">BUY REQUEST</a>
                         </li>
 
                     </ul>
                 </li>
-      </ul>
 
-      <form class="navbar-form navbar-left" method="POST" action="search.php">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search" name="keyword">
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit" name="search">
-            <i class="glyphicon glyphicon-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+                <li><a href="review.php">REVIEW</a></li>
+      </ul>
 
       <ul class="nav navbar-nav navbar-right">
 
@@ -364,6 +363,21 @@
   </div>
 </nav>
 
+<form method="POST" action="search.php">
+  <div class="container-fluid" style="margin-bottom: 5%;background-color: white">
+  <div class="input-group" style="padding:2% 20% 1% 20%">
+        <input type="text" class="form-control" placeholder="Search" name="keyword">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit" name="search">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+    </div>
+</div>
+
+</form>
+<hr>
+
 <?php
     if(isset($_POST["search"])){
 
@@ -375,15 +389,15 @@
 
         $result = $conn->query($sql);
 
-        if($result->num_rows > 0){
+      if($result->num_rows > 0){
       echo '<form method="POST" action="buy.php">';
       while($row = $result->fetch_assoc()){
         echo '
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <div class="panel panel-primary">
-              <div class="panel-heading">LATEST ARRIVAL</div>
+              <div class="panel-heading">'.$row["department"].'</div>
               <center>
-                <div class="panel-body" style="width:50%;height:225px"><img src="uploads/'.$row["image"].'" style="width:200px;height:200px" class="img-responsive" alt="Image"></div></center>
+                <div class="panel-body" style="width:50%;height:190px"><img src="uploads/'.$row["image"].'" style="width:150px;height:150px" class="img-responsive" alt="Image"></div></center>
               <div class="panel-footer">
               <strong><p>'.$row["book_name"].'</p>
               <p>&#x20B9;'.$row["cost"].'</p></strong>
@@ -399,7 +413,7 @@
         else{
             echo '
                 <center>
-                <div class="container" style="border:1px solid grey;width:50%;margin-top:15%;height:100px;padding-top:3%">
+                <div class="container" style="border:1px solid grey;width:50%;margin-top:10%;height:100px;padding-top:3%">
                     <p><strong>No matching books found !!</strong></p>
                 </div>  
                 </center>
@@ -407,6 +421,22 @@
         }
     }
 ?>
+
+<div id="mybutton">
+        <a href="upload.php"><button class="feedback"><label style= "font-size:20px;color:white;font-family:sans-serif;font-style:italic">SELL</label></button></a>
+</div>
+
+<br><br><br>
+
+<footer class="footer fixed-bottom">
+      <div class="container text-center" style="height: 100px;">
+      <div class = "row">
+      <div class="col-sm-12"><h5>CONTACT US</h5>Tel. No. : 8898312549 / 7506004002 / 9875242221
+<br>Email : bookit@gmail.com</div>
+</div>
+      </div>
+      <!-- /.container -->
+</footer>
 
 </body>
 </html>

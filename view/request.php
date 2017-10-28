@@ -26,13 +26,12 @@
     }
    
     /* Add a gray background color and some padding to the footer */
-    footer {
+footer {
       background-color: black;
       padding: 10px;
       clear: both;
       color: white;
     }
-
     .navbar-nav > li:hover > .dropdown-menu {
     display: block;
 }
@@ -363,149 +362,32 @@
   </div>
 </nav>
 
-<form method="POST" action="search.php">
-  <div class="container-fluid" style="margin-bottom: 5%;background-color: white">
-  <div class="input-group" style="padding:2% 20% 1% 20%">
-        <input type="text" class="form-control" placeholder="Search" name="keyword">
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit" name="search">
-            <i class="glyphicon glyphicon-search"></i>
-          </button>
-        </div>
-    </div>
-</div>
-
-</form>
-<hr>
-
-<?php
+  <?php
     $conn = new mysqli("localhost","root","","bookit");
 
     if($conn->connect_error)
       die("Connection failed ".$conn->connect_error);
 
-    $comp1 = "SELECT * FROM book_data WHERE department='COMPUTER' AND semester='I'";
-    $comp2 = "SELECT * FROM book_data WHERE department='COMPUTER' AND semester='II'";
-    $comp3 = "SELECT * FROM book_data WHERE department='COMPUTER' AND semester='III'";
-    $comp4 = "SELECT * FROM book_data WHERE department='COMPUTER' AND semester='IV'";
-    $comp5 = "SELECT * FROM book_data WHERE department='COMPUTER' AND semester='V'";
-    $comp6 = "SELECT * FROM book_data WHERE department='COMPUTER' AND semester='VI'";
-    $comp7 = "SELECT * FROM book_data WHERE department='COMPUTER' AND semester='VII'";
-    $comp8 = "SELECT * FROM book_data WHERE department='COMPUTER' AND semester='VIII'";
+    $seller = $_SESSION["username"];
 
-    $it1 = "SELECT * FROM book_data WHERE department='IT' AND semester='I'";
-    $it2 = "SELECT * FROM book_data WHERE department='IT' AND semester='II'";
-    $it3 = "SELECT * FROM book_data WHERE department='IT' AND semester='III'";
-    $it4 = "SELECT * FROM book_data WHERE department='IT' AND semester='IV'";
-    $it5 = "SELECT * FROM book_data WHERE department='IT' AND semester='V'";
-    $it6 = "SELECT * FROM book_data WHERE department='IT' AND semester='VI'";
-    $it7 = "SELECT * FROM book_data WHERE department='IT' AND semester='VII'";
-    $it8 = "SELECT * FROM book_data WHERE department='IT' AND semester='VIII'";
+    $ret = "SELECT * FROM request WHERE seller='$seller'";
 
-    $extc1 = "SELECT * FROM book_data WHERE department='EXTC' AND semester='I'";
-    $extc2 = "SELECT * FROM book_data WHERE department='EXTC' AND semester='II'";
-    $extc3 = "SELECT * FROM book_data WHERE department='EXTC' AND semester='III'";
-    $extc4 = "SELECT * FROM book_data WHERE department='EXTC' AND semester='IV'";
-    $extc5 = "SELECT * FROM book_data WHERE department='EXTC' AND semester='V'";
-    $extc6 = "SELECT * FROM book_data WHERE department='EXTC' AND semester='VI'";
-    $extc7 = "SELECT * FROM book_data WHERE department='EXTC' AND semester='VII'";
-    $extc8 = "SELECT * FROM book_data WHERE department='EXTC' AND semester='VIII'";
+    //&#x20B9
 
-    $mech1 = "SELECT * FROM book_data WHERE department='Mechanical' AND semester='I'";
-    $mech2 = "SELECT * FROM book_data WHERE department='Mechanical' AND semester='II'";
-    $mech3 = "SELECT * FROM book_data WHERE department='Mechanical' AND semester='III'";
-    $mech4 = "SELECT * FROM book_data WHERE department='Mechanical' AND semester='IV'";
-    $mech5 = "SELECT * FROM book_data WHERE department='Mechanical' AND semester='V'";
-    $mech6 = "SELECT * FROM book_data WHERE department='Mechanical' AND semester='VI'";
-    $mech7 = "SELECT * FROM book_data WHERE department='Mechanical' AND semester='VII'";
-    $mech8 = "SELECT * FROM book_data WHERE department='Mechanical' AND semester='VIII'";
+    $result = $conn->query($ret);
 
-    if(isset($_POST["comp1"]))
-        $res = $conn->query($comp1);
-    if(isset($_POST["comp2"]))
-        $res = $conn->query($comp2);
-    if(isset($_POST["comp3"]))
-        $res = $conn->query($comp3);
-    if(isset($_POST["comp4"]))
-        $res = $conn->query($comp4);
-    if(isset($_POST["comp5"]))
-        $res = $conn->query($comp5);
-    if(isset($_POST["comp6"]))
-        $res = $conn->query($comp6);
-    if(isset($_POST["comp7"]))
-        $res = $conn->query($comp7);
-    if(isset($_POST["comp8"]))
-        $res = $conn->query($comp8);
-
-
-
-    if(isset($_POST["it1"]))
-        $res = $conn->query($it1);
-    if(isset($_POST["it2"]))
-        $res = $conn->query($it2);
-    if(isset($_POST["it3"]))
-        $res = $conn->query($it3);
-    if(isset($_POST["it4"]))
-        $res = $conn->query($it4);
-    if(isset($_POST["it5"]))
-        $res = $conn->query($it5);
-    if(isset($_POST["it6"]))
-        $res = $conn->query($it6);
-    if(isset($_POST["it7"]))
-        $res = $conn->query($it7);
-    if(isset($_POST["it8"]))
-        $res = $conn->query($it8);
-
-
-    if(isset($_POST["extc1"]))
-        $res = $conn->query($extc1);
-    if(isset($_POST["extc2"]))
-        $res = $conn->query($extc2);
-    if(isset($_POST["extc3"]))
-        $res = $conn->query($extc3);
-    if(isset($_POST["extc4"]))
-        $res = $conn->query($extc4);
-    if(isset($_POST["extc5"]))
-        $res = $conn->query($extc5);
-    if(isset($_POST["extc6"]))
-        $res = $conn->query($extc6);
-    if(isset($_POST["extc7"]))
-        $res = $conn->query($extc7);
-    if(isset($_POST["extc8"]))
-        $res = $conn->query($ext8);
-
-
-    if(isset($_POST["mech1"]))
-        $res = $conn->query($mech1);
-    if(isset($_POST["mech2"]))
-        $res = $conn->query($mech2);
-    if(isset($_POST["mech3"]))
-        $res = $conn->query($mech3);
-    if(isset($_POST["mech4"]))
-        $res = $conn->query($mech4);
-    if(isset($_POST["mech5"]))
-        $res = $conn->query($mech5);
-    if(isset($_POST["mech6"]))
-        $res = $conn->query($mech6);
-    if(isset($_POST["mech7"]))
-        $res = $conn->query($mech7);
-    if(isset($_POST["mech8"]))
-        $res = $conn->query($mech8);
-
-
-    if($res->num_rows > 0){
-      echo '<form method="POST" action="buy.php">';
-      while($row = $res->fetch_assoc()){
+    if($result->num_rows > 0){
+      echo '<form method="POST" action="request.php">';
+      while($row = $result->fetch_assoc()){
         echo '
           <div class="col-sm-3">
             <div class="panel panel-primary">
-              <div class="panel-heading">'.$row["department"].'</div>
+              <div class="panel-heading">'.$row["buyer"].'</div>
               <center>
                 <div class="panel-body" style="width:50%;height:190px"><img src="uploads/'.$row["image"].'" style="width:150px;height:150px" class="img-responsive" alt="Image"></div></center>
               <div class="panel-footer">
-              <strong><p>'.$row["book_name"].'</p>
-              <p>&#x20B9;'.$row["cost"].'</p></strong>
-              <button class="btn btn-primary" type="submit" name="more_info" value="'.$row["sell_id"].'">View More</button>
+              <strong><p>'.$row["book_name"].'</p><center>
+              <button class="btn btn-primary" type="submit" name="accept" value="'.$row["sell_id"].'">Accept</button></center>
               </div>
             </div>
           </div>
@@ -514,11 +396,39 @@
       echo '</form>';
     }
 
-?>
+    else{
+            echo '
+                <center>
+                <div class="container" style="border:1px solid grey;width:50%;margin-top:15%;height:100px;padding-top:3%">
+                    <p><strong>No requests !!</strong></p>
+                </div>  
+                </center>
+            ';
+    }
+
+    if(isset($_POST["accept"])){
+        $sell_id = $_POST["accept"];
+
+        $del = "DELETE FROM book_data WHERE sell_id='$sell_id'";
+        $delreq = "DELETE FROM request WHERE sell_id='$sell_id'";
+
+        if(!$conn->query($del))
+            echo 'Not accepted'; 
+
+        else if(!$conn->query($delreq))
+            echo 'Not accepted';
+
+        else
+            echo '<script>window.location.replace("index.php")</script>';  
+    }
+  ?> 
+
 
 <div id="mybutton">
         <a href="upload.php"><button class="feedback"><label style= "font-size:20px;color:white;font-family:sans-serif;font-style:italic">SELL</label></button></a>
 </div>
+
+<br><br>
 
 <footer class="footer fixed-bottom">
       <div class="container text-center" style="height: 100px;">
